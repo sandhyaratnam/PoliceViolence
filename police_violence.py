@@ -1,6 +1,12 @@
+# policeviolence.py
+# Program analyzes a csv file to produce a graph showing the breakdown of those
+# killed by the police by state from 2013-2019
+# Created by Sandhya Ratnam
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# reads data from MPVDataset.xlsx and writes needed columns to data.csv
 def get_data(filename):
     cols = ['Victim\'s gender','Victim\'s race','Date of Incident (month/day/year)','State']
     df = pd.read_excel(filename, sheet_name='2013-2019 Police Killings', usecols=cols)
@@ -8,6 +14,7 @@ def get_data(filename):
     df2 = pd.read_csv('data.csv')
     combine(df2)
 
+# collects the data from data.csv
 def stats():
     data = pd.read_csv('data.csv')
 
@@ -24,7 +31,7 @@ def stats():
     print(s_dict)
     graph(s_dict)
 
-
+# displays the graph
 def graph(dict):
     plt.figure()
     df = pd.DataFrame(dict)
@@ -35,6 +42,7 @@ def graph(dict):
 
     plt.show()
 
+# maiin function
 def main():
     filename = pd.ExcelFile('MPVDataset.xlsx')
     get_data(filename)
