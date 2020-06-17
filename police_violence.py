@@ -12,10 +12,10 @@ def get_data(filename):
     df = pd.read_excel(filename, sheet_name='2013-2019 Police Killings', usecols=cols)
     df.to_csv('data.csv')
     df2 = pd.read_csv('data.csv')
-    combine(df2)
+    stats(df2)
 
 # collects the data from data.csv
-def stats():
+def stats(data):
     data = pd.read_csv('data.csv')
 
     s_dict = {}
@@ -28,7 +28,7 @@ def stats():
                 if (row['State'] == k and row['Victim\'s race'] == key):
                     s_dict[k][key] = s_dict[k].get(key) + 1
 
-    print(s_dict)
+    #print(s_dict)
     graph(s_dict)
 
 # displays the graph
@@ -42,9 +42,9 @@ def graph(dict):
 
     plt.show()
 
-# maiin function
+# main function
 def main():
     filename = pd.ExcelFile('MPVDataset.xlsx')
     get_data(filename)
 
-stats()
+main()
