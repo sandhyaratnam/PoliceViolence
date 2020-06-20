@@ -47,4 +47,5 @@ def main():
     filename = pd.ExcelFile('MPVDataset.xlsx')
     get_data(filename)
 
-main()
+if __name__ == "__main__":
+    main()
